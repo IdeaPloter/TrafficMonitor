@@ -3,6 +3,8 @@ Traffic Monitor是一款用于Windows平台的网速监控悬浮窗软件，可�
 
 修改，增加了 Windows 11 新任务栏的一点支持。
 
+![pic](https://user-images.githubusercontent.com/36418285/125168871-284a2500-e1da-11eb-80f7-692c026b97e5.png)
+
 # [下载](https://github.com/ZetaSp/TrafficMonitor/releases/latest)：
 
 修改自 1.80.3，点击上面下载
