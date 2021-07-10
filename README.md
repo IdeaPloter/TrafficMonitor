@@ -5,7 +5,7 @@ Traffic Monitor是一款用于Windows平台的网速监控悬浮窗软件，可�
 
 # [下载](https://github.com/ZetaSp/TrafficMonitor/releases/latest)：
 
-目前是 1.80.3 上改的，我还没整理完，还没发 release 。
+修改自 1.80.3，点击上面下载
 
 # 主要特性
 * 显示当前实现网络传输速率、CPU和内存占用率
@@ -15,7 +15,7 @@ Traffic Monitor是一款用于Windows平台的网速监控悬浮窗软件，可�
 * 支持更换皮肤和自定义皮肤
 * 历史流量统计
 * *增加对 Windows 11 的特别适配
-* *其他系统可能失去适配，因为我只有 Win 11 的电脑可用了
+* *其他系统可能失去适配，因为我只有 Win 11 的电脑可用
 
 # 使用指南
 
