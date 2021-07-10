@@ -210,6 +210,8 @@ void CTrafficMonitorApp::LoadConfig()
     m_taskbar_data.disp_str.Get(TDI_MAIN_BOARD_TEMP) = ini.GetString(L"task_bar", L"main_board_temp_string", L"MBD: $");
 
     m_taskbar_data.tbar_wnd_on_left = ini.GetBool(_T("task_bar"), _T("task_bar_wnd_on_left"), false);
+    m_taskbar_data.tbar_wnd_snap = ini.GetBool(_T("task_bar"), _T("task_bar_wnd_snap"), false); // 11Patch
+    m_taskbar_data.tbar_wnd_offset = ini.GetInt(_T("task_bar"), _T("tbar_wnd_offset"), 0);   // 11Patch
     m_taskbar_data.speed_short_mode = ini.GetBool(_T("task_bar"), _T("task_bar_speed_short_mode"), false);
     m_taskbar_data.unit_byte = ini.GetBool(_T("task_bar"), _T("unit_byte"), true);
     m_taskbar_data.speed_unit = static_cast<SpeedUnit>(ini.GetInt(_T("task_bar"), _T("task_bar_speed_unit"), 0));
@@ -355,6 +357,8 @@ void CTrafficMonitorApp::SaveConfig()
     ini.WriteString(_T("task_bar"), _T("main_board_temp_string"), m_taskbar_data.disp_str.Get(TDI_MAIN_BOARD_TEMP));
 
     ini.WriteBool(L"task_bar", L"task_bar_wnd_on_left", m_taskbar_data.tbar_wnd_on_left);
+    ini.WriteBool(L"task_bar", L"task_bar_wnd_snap", m_taskbar_data.tbar_wnd_snap); // 11Patch
+    ini.WriteInt(L"task_bar", L"tbar_wnd_offset", m_taskbar_data.tbar_wnd_offset);  // 11Patch
     ini.WriteBool(L"task_bar", L"task_bar_speed_short_mode", m_taskbar_data.speed_short_mode);
     ini.WriteBool(L"task_bar", L"unit_byte", m_taskbar_data.unit_byte);
     ini.WriteInt(L"task_bar", L"task_bar_speed_unit", static_cast<int>(m_taskbar_data.speed_unit));

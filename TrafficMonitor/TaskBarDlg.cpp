@@ -359,9 +359,11 @@ bool CTaskBarDlg::AdjustWindowPos()
 {
     if (this->GetSafeHwnd() == NULL || !IsWindow(this->GetSafeHwnd()))
         return false;
-    CRect rcMin, rcBar;
+    //CRect rcMin, rcBar;
+    CRect rcMin, rcBar, rcMinReal;
     ::GetWindowRect(m_hMin, rcMin); //获得最小化窗口的区域
     ::GetWindowRect(m_hBar, rcBar); //获得二级容器的区域
+    ::GetWindowRect(m_hMinReal, rcMinReal); // 11Patch: 11任务栏
     static bool last_taskbar_on_top_or_bottom;
     CheckTaskbarOnTopOrBottom();
     if (m_taskbar_on_top_or_bottom != last_taskbar_on_top_or_bottom)
@@ -377,16 +379,31 @@ bool CTaskBarDlg::AdjustWindowPos()
         m_rect.bottom = m_rect.top + m_window_height;
         if (rcMin.Width() != m_min_bar_width)   //如果最小化窗口的宽度改变了，重新设置任务栏窗口的位置
         {
-            m_left_space = rcMin.left - rcBar.left;
+            //m_left_space = rcMin.left - rcBar.left;   // 11Patch: rcMin.left==rcBar.left
             m_rcMin = rcMin;
             m_min_bar_width = m_rcMin.Width() - m_rect.Width(); //保存最小化窗口宽度
             if (!theApp.m_taskbar_data.tbar_wnd_on_left)
             {
+                if (!theApp.m_taskbar_data.tbar_wnd_snap) {
+                    m_left_space = rcBar.right;   // 11Patch: 显示在最右侧，全长向左绘制
+                }
+                else
+                {
+                    m_left_space = rcMinReal.left - theApp.DPI(90);   // 11Patch: 显示在任务栏左侧，吸附（左移90，错开Win标）向左绘制
+                }
                 ::MoveWindow(m_hMin, m_left_space, 0, m_rcMin.Width() - m_rect.Width(), m_rcMin.Height(), TRUE);    //设置最小化窗口的位置
                 m_rect.MoveToX(m_left_space + m_rcMin.Width() - m_rect.Width() + 2);
             }
             else
             {
+                // 11Patch: TODO 偏移量
+                if (!theApp.m_taskbar_data.tbar_wnd_snap) {
+                    m_left_space = 0;   // 11Patch: 显示在最左侧，从头向右绘制
+                }
+                else
+                {
+                    m_left_space = rcMinReal.right;   // 11Patch: 显示在任务栏右侧，吸附向右绘制
+                }
                 ::MoveWindow(m_hMin, m_left_space + m_rect.Width(), 0, m_rcMin.Width() - m_rect.Width(), m_rcMin.Height(), TRUE);
                 m_rect.MoveToX(m_left_space);
             }
@@ -821,7 +838,8 @@ BOOL CTaskBarDlg::OnInitDialog()
     m_hTaskbar = ::FindWindow(L"Shell_TrayWnd", NULL);      //寻找类名是Shell_TrayWnd的窗口句柄
     m_hBar = ::FindWindowEx(m_hTaskbar, 0, L"ReBarWindow32", NULL); //寻找二级容器的句柄
     //m_hMin = ::FindWindowEx(m_hBar, 0, L"MSTaskSwWClass", NULL);    //寻找最小化窗口的句柄
-    m_hMin = ::FindWindowEx(m_hTaskbar, 0, L"MSTaskSwWClass", NULL);    // 11Patch: Windows11中Bar变短了，位置为所有任务栏已有的程序（空白部分和Win标等不在内），所以直接取整个状态栏
+    m_hMin = ::FindWindowEx(m_hTaskbar, 0, L"MSTaskSwWClass", NULL);    // 11Patch: Win11的Bar变短，仅包括已有的程序，所以改取整个底栏
+    m_hMinReal = ::FindWindowEx(m_hBar, 0, L"MSTaskSwWClass", NULL);    // 11Patch: 中间的任务栏Bar部分
 
     //设置窗口透明色
     ApplyWindowTransparentColor();

@@ -417,6 +417,7 @@ void CTaskBarSettingsDlg::OnBnClickedTaskbarWndOnLeftCheck()
 {
     // TODO: 在此添加控件通知处理程序代码
     m_data.tbar_wnd_on_left = (((CButton*)GetDlgItem(IDC_TASKBAR_WND_ON_LEFT_CHECK))->GetCheck() != 0);
+    m_data.tbar_wnd_snap = (MessageBoxW(_T("将窗口贴靠到状态栏吗？\n不贴靠将置于底栏两端。\n在配置文件中可编辑更精确的窗口偏移量。"), _T("Windows11 兼容设置"), MB_YESNO|MB_ICONQUESTION) == 6); // 11Patch: 为了不破坏原界面，采取弹窗选择
 }
 
 
