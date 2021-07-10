@@ -391,6 +391,7 @@ bool CTaskBarDlg::AdjustWindowPos()
                 {
                     m_left_space = rcMinReal.left - theApp.DPI(90);   // 11Patch: 显示在任务栏左侧，吸附（左移90，错开Win标）向左绘制
                 }
+                m_left_space += theApp.m_taskbar_data.tbar_wnd_offset;  // 11Patch: 偏移值
                 ::MoveWindow(m_hMin, m_left_space, 0, m_rcMin.Width() - m_rect.Width(), m_rcMin.Height(), TRUE);    //设置最小化窗口的位置
                 m_rect.MoveToX(m_left_space + m_rcMin.Width() - m_rect.Width() + 2);
             }
@@ -404,6 +405,7 @@ bool CTaskBarDlg::AdjustWindowPos()
                 {
                     m_left_space = rcMinReal.right;   // 11Patch: 显示在任务栏右侧，吸附向右绘制
                 }
+                m_left_space += theApp.m_taskbar_data.tbar_wnd_offset;  // 11Patch: 偏移值
                 ::MoveWindow(m_hMin, m_left_space + m_rect.Width(), 0, m_rcMin.Width() - m_rect.Width(), m_rcMin.Height(), TRUE);
                 m_rect.MoveToX(m_left_space);
             }
