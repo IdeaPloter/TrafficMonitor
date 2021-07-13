@@ -29,10 +29,8 @@ Traffic Monitor 是一款用于 Windows 平台的网速监控悬浮窗软件，�
 
 如果 Traffic Monitor 任务栏的交互对你很重要，不妨先关闭背景透明，开启 **根据任务栏颜色设置背景色** ，这个效果近似透明；如果你只看个数据，那么可以继续透明。
 
-关闭桌面图标会导致 Traffic Monitor 消失，需要重新打开。
+关闭桌面图标，修改一些任务栏设置等，会导致 Traffic Monitor 消失，需要关闭重新打开。
 
 另外很抱歉，技术有限，任务栏弹窗是硬编码的简体中文，其他语言用户如有需要请自行修改 TaskBarSettingsDlg.cpp 编译。
 
 ### 更多信息请访问原储存库 [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor)
-
-_背景透明（没 Layer 的窗）不可交互，但是可以叠一个透明 Layer 在上面分离交互，到时候我试试。_
