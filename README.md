@@ -34,5 +34,3 @@ Traffic Monitor 是一款用于 Windows 平台的网速监控悬浮窗软件，�
 另外很抱歉，技术有限，任务栏弹窗是硬编码的简体中文，其他语言用户如有需要请自行修改 TaskBarSettingsDlg.cpp 编译。
 
 ### 更多信息请访问原储存库 [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor)
-
-_这是ZetaSp。我之前改的TrafficMonitor Win11 Patch，不方便对原储存库pull，所以重新fork一次，这个就转移到小号了。_
