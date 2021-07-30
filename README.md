@@ -1,3 +1,5 @@
+# 已经提交原储存库。
+
 # Traffic Monitor 11Patch
 Traffic Monitor 是一款用于 Windows 平台的网速监控悬浮窗软件，可以显示当前网速、CPU 及内存利用率，支持嵌入到任务栏显示，支持更换皮肤、历史流量统计等功能。
 
@@ -34,5 +36,3 @@ Traffic Monitor 是一款用于 Windows 平台的网速监控悬浮窗软件，�
 另外很抱歉，技术有限，任务栏弹窗是硬编码的简体中文，其他语言用户如有需要请自行修改 TaskBarSettingsDlg.cpp 编译。
 
 ### 更多信息请访问原储存库 [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor)
-
-已经提交原储存库。
